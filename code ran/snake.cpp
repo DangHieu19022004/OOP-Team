@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
+#include <iomanip>
 #include<ctime> 
 #include <windows.h>
 #define KEY_NONE	-1
@@ -34,6 +35,39 @@ void SetColor(WORD color)
 //
 //
 // code ran
+
+void batdau(int &dokho){
+	SetColor(5);
+	cout<<setw(180)<<"GAME RAN SAN MOI"<<endl<<endl<<endl;
+	SetColor(2);
+	cout<<setw(60)<<"Huong dan: Di chuyen bang 4 phim w, a, s, d. Ban se thua khi ran"<<endl;
+	cout<<setw(67)<<"cham phai chuong ngai vat hoac cham tuong hoac can duoi."<< endl<<endl;
+	cout<<"Co 3 muc do:"<<endl;
+	cout<<"1. De"<<endl<<"2. Trung binh"<<endl<<"3. Kho"<<endl;
+	cout<<"Chon do kho: ";
+	do{
+		cin>>dokho;
+		if(dokho<1 || dokho>3){
+			cout<<"Nhap sai! Vui long nhap lai"<<endl;
+		}else{
+			break;
+		}
+	}while(dokho<1 || dokho>3);
+	
+	if(dokho==1){
+		dokho=300;
+	}else if(dokho==2){
+		dokho=150;
+	}else if(dokho==3){
+		dokho=100;
+	}
+	cout<<"Nhan enter de bat dau game";
+	getch();
+	system("cls");
+	SetColor(7);
+}
+
+
 int sl=3;
 
 void xoacontro()
@@ -186,9 +220,11 @@ bool checkdie(int ToaDoX[], int ToaDoY[], int x, int y){
 }
 
 int main() {
+	int dokho=0;
+	xoacontro();
+	batdau(dokho);	
 	srand(time(NULL));
 	bool gameover=false;
-	xoacontro();
 	int ToaDoX[100], ToaDoY[100];
 	int x=50, y=13, check=2;
 	int xqua=0, yqua=0;
@@ -221,7 +257,7 @@ int main() {
 		}
 		xulyran(ToaDoX, ToaDoY, x, y, xqua, yqua);
 		gameover=checkdie(ToaDoX, ToaDoY, x, y);
-		Sleep(150);
+		Sleep(dokho);
 	}
 	_getch();
     return 0;
