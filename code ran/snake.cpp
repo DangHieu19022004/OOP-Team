@@ -37,18 +37,28 @@ void SetColor(WORD color)
 // code ran
 
 void batdau(int &dokho){
-	SetColor(5);
-	cout<<setw(180)<<"GAME RAN SAN MOI"<<endl<<endl<<endl;
-	SetColor(2);
+	SetColor(13);
+	cout<<setw(180)<<"GAME RAN SAN MOI"<<endl<<endl<<endl<<endl;
+	SetColor(11);
 	cout<<setw(60)<<"Huong dan: Di chuyen bang 4 phim w, a, s, d. Ban se thua khi ran"<<endl;
-	cout<<setw(67)<<"cham phai chuong ngai vat hoac cham tuong hoac can duoi."<< endl<<endl;
-	cout<<"Co 3 muc do:"<<endl;
-	cout<<"1. De"<<endl<<"2. Trung binh"<<endl<<"3. Kho"<<endl;
+	cout<<setw(67)<<"cham phai chuong ngai vat hoac cham tuong hoac can duoi."<< endl;
+	SetColor(4);
+	cout<<setw(20)<<"Luu y: Vui long tat Unikey va Caps Lock truoc khi choi game de co trai nghiem tot nhat !!!"<< endl<<endl;
+	SetColor(11);
+	cout<<"Co 3 muc do:"<<endl<<endl;
+	SetColor(2);
+	cout<<"1. De"<<endl;
+	SetColor(6);
+	cout<<"2. Trung binh"<<endl;
+	SetColor(4);
+	cout<<"3. Cao"<<endl<<endl;
+	SetColor(11);
 	cout<<"Chon do kho: ";
 	do{
 		cin>>dokho;
 		if(dokho<1 || dokho>3){
 			cout<<"Nhap sai! Vui long nhap lai"<<endl;
+			cout<<"Chon do kho: ";
 		}else{
 			break;
 		}
@@ -61,10 +71,30 @@ void batdau(int &dokho){
 	}else if(dokho==3){
 		dokho=100;
 	}
-	cout<<"Nhan enter de bat dau game";
-	getch();
-	system("cls");
+	cout<<"Ban da chon do kho ";
+	if(dokho==100){
+		cout<<"thap"<<endl; 
+	}else if(dokho==150){
+		cout<<"trung binh"<<endl;
+	}else if(dokho==300){
+		cout<<"cao"<<endl;
+	}
+	cout<<endl<<"Tro choi se bat dau sau 3s !!!"<<endl;
+	SetColor(9);
+	cout<<setw(16)<<"3\t";
+	Sleep(1000);
+	cout<<setw(16)<<"2\t";
+	Sleep(1000);
+	cout<<setw(16)<<"1\t";
+	Sleep(250);
+	cout<<setw(16)<<".\t";
+	Sleep(250);
+	cout<<setw(16)<<".\t";
+	Sleep(250);
+	cout<<setw(16)<<".\t";
+	Sleep(250);
 	SetColor(7);
+	system("cls");
 }
 
 
@@ -82,9 +112,9 @@ void vesnake(int ToaDoX[], int ToaDoY[]){
 	for(int i=0; i<sl; i++){
 		gotoXY(ToaDoX[i], ToaDoY[i]);
 		if(i==0){
-			SetColor(10);
+			SetColor(4);
 			cout<<"O";
-			SetColor(7);
+			SetColor(7); 
 		}
 		else{
 			cout<<"o";
@@ -173,25 +203,30 @@ void Khung(){
 	SetColor(11);
 	while(y!=28){
 		gotoXY(x,y);
-		cout<<"|";
+		cout<<"+";
 		y++;
+		Sleep(10);
 	}
 	while(x!=100){
 		gotoXY(x,y-1);
-		cout<<"-";
+		cout<<"+";
 		x++;
+		Sleep(10);
 	}
 	while(y!=0){
 		gotoXY(x,y-1);
-		cout<<"|";
+		cout<<"+";
 		y--;		
+		Sleep(10);
 	}
 	while(x!=10){
 		gotoXY(x,y);
-		cout<<"-";  
+		cout<<"+";  
 		x--;
+		Sleep(10);
 	}
 	SetColor(7);
+	Sleep(300);
 }
 
 bool checkchamtuong(int x0, int y0){
@@ -220,44 +255,64 @@ bool checkdie(int ToaDoX[], int ToaDoY[], int x, int y){
 }
 
 int main() {
-	int dokho=0;
-	xoacontro();
-	batdau(dokho);	
-	srand(time(NULL));
-	bool gameover=false;
-	int ToaDoX[100], ToaDoY[100];
-	int x=50, y=13, check=2;
-	int xqua=0, yqua=0;
-	Khung();
-	Khoitaoso_nach(ToaDoX,ToaDoY);
-	vesnake(ToaDoX, ToaDoY);
-	taoqua(ToaDoX, ToaDoY, xqua, yqua);
-	while(gameover==false){
-		xoadulieucu(ToaDoX,ToaDoY);
-		if(_kbhit()){
-			char kytu=_getch();
-			if(kytu=='w' && check != 0){
-				check=1;
-			}else if(kytu=='s' && check != 1){
-				check=0;
-			}else if(kytu=='a' && check != 2){
-				check=3;
-			}else if(kytu=='d' && check != 3){
-				check=2;
-			}
+
+//	int dokho=0;
+//	xoacontro();
+//	batdau(dokho);	
+//	srand(time(NULL));
+//	bool gameover=false;
+//	int ToaDoX[100], ToaDoY[100];
+//	int x=50, y=13, check=2;
+//	int xqua=0, yqua=0;
+//	Khung();
+//	Khoitaoso_nach(ToaDoX,ToaDoY);
+//	vesnake(ToaDoX, ToaDoY);
+//	taoqua(ToaDoX, ToaDoY, xqua, yqua);
+//	Sleep(1000);
+//	while(gameover==false){
+//		xoadulieucu(ToaDoX,ToaDoY);
+//		if(_kbhit()){
+//			char kytu=_getch();
+//			if(kytu=='w'&& check != 0){
+//				check=1;
+//			}else if(kytu=='s' && check != 1){
+//				check=0;
+//			}else if(kytu=='a' && check != 2){
+//				check=3;
+//			}else if(kytu=='d' && check != 3){
+//				check=2;
+//			}
+//		}
+//		if(check==0){
+//			y++;
+//		}else if(check==1){
+//			y--;
+//		}else if(check==2){
+//			x++;
+//		}else if(check==3){
+//			x--;
+//		}
+//		xulyran(ToaDoX, ToaDoY, x, y, xqua, yqua);
+//		gameover=checkdie(ToaDoX, ToaDoY, x, y);
+//		Sleep(dokho);
+//	}
+//	Sleep(300);
+//	system("cls");	
+	bool gameover=true;
+	if(gameover==true){
+		SetColor(4);	
+		gotoXY(55,10);
+		cout<<"Gameover";
+	}
+	Sleep(2000);
+	gotoXY(10,1);
+	cout<<"Bam phim 1 de choi lai"<<endl;
+	cout<<"Bam phim 'x' de thoat";
+	if(_getch()){
+		char out;
+		if(out=='1'){
+			
 		}
-		if(check==0){
-			y++;
-		}else if(check==1){
-			y--;
-		}else if(check==2){
-			x++;
-		}else if(check==3){
-			x--;
-		}
-		xulyran(ToaDoX, ToaDoY, x, y, xqua, yqua);
-		gameover=checkdie(ToaDoX, ToaDoY, x, y);
-		Sleep(dokho);
 	}
 	_getch();
     return 0;
