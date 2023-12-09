@@ -9,6 +9,7 @@
 using namespace std;
 //viet ham ho tro
 
+
 void gotoXY(int x, int y)
 {
 	HANDLE hConsoleOutput;
@@ -69,14 +70,14 @@ void batdau(int &dokho){
 	}else if(dokho==2){
 		dokho=150;
 	}else if(dokho==3){
-		dokho=80;
+		dokho=100;
 	}
 	cout<<"Ban da chon do kho ";
 	if(dokho==300){
 		cout<<"thap"<<endl; 
 	}else if(dokho==150){
 		cout<<"trung binh"<<endl;
-	}else if(dokho==80){
+	}else if(dokho==100){
 		cout<<"cao"<<endl;
 	}
 	cout<<endl<<"Tro choi se bat dau sau 3s !!!"<<endl;
@@ -136,22 +137,27 @@ bool checkrananqua(int xqua, int yqua, int x0, int y0){
 	return false;
 }
 
-bool checktrung(int ToaDoX[], int ToaDoY[], int xqua, int yqua){
+bool checktrung(int ToaDoX[], int ToaDoY[], int ChuongNgaiX[], int ChuongNgaiY[], int xqua, int yqua){
 	for(int i=0; i<sl; i++){
 		if(ToaDoX[i]==xqua && ToaDoY[i]==yqua){
+			return true;
+		}
+	}
+	for(int i=0; i<60; i++){
+		if(ChuongNgaiX[i]==xqua && ChuongNgaiY[i]==yqua){
 			return true;
 		}
 	}
 	return false;
 }
 
-void taoqua(int ToaDoX[], int ToaDoY[], int &xqua, int &yqua){
+void taoqua(int ToaDoX[], int ToaDoY[], int ChuongNgaiX[], int ChuongNgaiY[], int &xqua, int &yqua){
 	int i=rand()%(15-1+1)+1;
 	SetColor(i);
 	do{
 		xqua = rand() % (99-11+1) + 11;
 		yqua = rand() % (25-2+1) + 2;
-	}while(checktrung(ToaDoX, ToaDoY, xqua, yqua)==true);
+	}while(checktrung(ToaDoX, ToaDoY, ChuongNgaiX, ChuongNgaiY, xqua, yqua)==true);
 	gotoXY(xqua, yqua);	
 	cout<<"*";
 	SetColor(7);
@@ -172,7 +178,7 @@ void xoa(int a[], int vt){
 	sl--;
 }
 
-void xulyran(int ToaDoX[], int ToaDoY[], int x, int y, int &xqua, int &yqua){
+void xulyran(int ToaDoX[], int ToaDoY[],  int ChuongNgaiX[], int ChuongNgaiY[], int x, int y, int &xqua, int &yqua){
 	//
 	them(ToaDoX, x);
 	them(ToaDoY, y);
@@ -181,7 +187,7 @@ void xulyran(int ToaDoX[], int ToaDoY[], int x, int y, int &xqua, int &yqua){
 		xoa(ToaDoX, sl-1);
 		xoa(ToaDoY, sl-1);	
 	}else{
-		taoqua(ToaDoX, ToaDoY, xqua, yqua);
+		taoqua(ToaDoX, ToaDoY, ChuongNgaiX, ChuongNgaiY, xqua, yqua);
 	}
 	vesnake(ToaDoX,ToaDoY);
 	
@@ -229,6 +235,58 @@ void Khung(){
 	Sleep(300);
 }
 
+void Chuongngai(int ChuongNgaiX[100], int ChuongNgaiY[100]){
+	int x1=20, y1=8;
+	for(int i=0; i<3; i++){
+		ChuongNgaiX[i]=x1;
+		ChuongNgaiY[i]=y1;
+		y1--;
+	}
+	for(int i=3; i<15; i++){
+		ChuongNgaiX[i]=x1;
+		ChuongNgaiY[i]=y1;
+		x1++;
+	}
+	int x2=90, y2=8;
+	for(int i=15; i<18; i++){
+		ChuongNgaiX[i]=x2;
+		ChuongNgaiY[i]=y2;
+		y2--;		
+	}
+	for(int i=18; i<30; i++){
+		ChuongNgaiX[i]=x2;
+		ChuongNgaiY[i]=y2;
+		x2--;		
+	}
+	int x3=20 ,y3=18;
+	for(int i=30; i<33; i++){
+		ChuongNgaiX[i]=x3;
+		ChuongNgaiY[i]=y3;
+		y3++;
+	}
+	for(int i=33; i<45; i++){
+		ChuongNgaiX[i]=x3;
+		ChuongNgaiY[i]=y3;
+		x3++;
+	}
+	int x4=90, y4=18;
+	for(int i=45; i<48; i++){
+		ChuongNgaiX[i]=x4;
+		ChuongNgaiY[i]=y4;
+		y4++;
+	}
+	for(int i=48; i<60; i++){
+		ChuongNgaiX[i]=x4;
+		ChuongNgaiY[i]=y4;
+		x4--;
+	}
+	//ve chuong ngai vat
+	for(int i=0; i<60; i++){
+		gotoXY(ChuongNgaiX[i], ChuongNgaiY[i]);
+		cout << "+";
+	}
+}
+
 bool checkchamtuong(int x0, int y0){
 	if(y0==0 || y0==27 || x0==10 || x0==100){
 		return true;
@@ -236,18 +294,23 @@ bool checkchamtuong(int x0, int y0){
 	else return false;
 }
 
-bool checkrancan(int ToaDoX[], int ToaDoY[]){
+bool checkrancan(int ToaDoX[], int ToaDoY[], int ChuongNgaiX[], int ChuongNgaiY[]){
 	for(int i=1; i<sl; i++){
 		if(ToaDoX[0]==ToaDoX[i] && ToaDoY[0]==ToaDoY[i]){
+			return true;
+		}
+	}
+	for(int i=0; i<60; i++){
+		if(ChuongNgaiX[i]==ToaDoX[0] && ChuongNgaiY[i]==ToaDoY[0]){
 			return true;
 		}
 	}
 	return false;
 }
 
-bool checkdie(int ToaDoX[], int ToaDoY[], int x, int y){
+bool checkdie(int ToaDoX[], int ToaDoY[], int ChuongNgaiX[], int ChuongNgaiY[], int x, int y){
 	bool kt1=checkchamtuong(x,y);
-	bool kt2=checkrancan(ToaDoX,ToaDoY);
+	bool kt2=checkrancan(ToaDoX,ToaDoY, ChuongNgaiX, ChuongNgaiY);
 	if(kt1 == true || kt2 ==true){
 		return true;
 	}
@@ -293,12 +356,14 @@ int main() {
 		srand(time(NULL));
 		bool gameover=false;
 		int ToaDoX[100], ToaDoY[100];
+		int ChuongNgaiX[100], ChuongNgaiY[100];
 		int x=50, y=13, check=2;
 		int xqua=0, yqua=0;
 		Khung();
+		Chuongngai(ChuongNgaiX, ChuongNgaiY);
 		Khoitaoso_nach(ToaDoX,ToaDoY);
 		vesnake(ToaDoX, ToaDoY);
-		taoqua(ToaDoX, ToaDoY, xqua, yqua);
+		taoqua(ToaDoX, ToaDoY, ChuongNgaiX, ChuongNgaiY, xqua, yqua);
 		Sleep(1000);
 		while(gameover==false){
 			xoadulieucu(ToaDoX,ToaDoY);
@@ -323,8 +388,8 @@ int main() {
 			}else if(check==3){
 				x--;
 			}
-			xulyran(ToaDoX, ToaDoY, x, y, xqua, yqua);
-			gameover=checkdie(ToaDoX, ToaDoY, x, y);
+			xulyran(ToaDoX, ToaDoY, ChuongNgaiX, ChuongNgaiY ,x, y, xqua, yqua);
+			gameover=checkdie(ToaDoX, ToaDoY, ChuongNgaiX, ChuongNgaiY, x, y);
 			Sleep(dokho);
 		}
 		Sleep(300);
