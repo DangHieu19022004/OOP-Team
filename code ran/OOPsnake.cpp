@@ -219,11 +219,15 @@ public:
     }
 
     void Khoitaoso_nach() {
-        int x = 50, y = 13;
+        //int x = 50, y = 13;
+        srand(time(NULL));
+        
+        int startX = rand() % (80 - 12 + 1) + 12;
+        int startY = rand() % (23 - 3 + 1) + 3; 
 
         for (int i = 0; i < sl; i++) {
-            ToaDoX[i] = x;
-            ToaDoY[i] = y;
+            ToaDoX[i] = startX;
+            ToaDoY[i] = startY;
             x--;
         }
     }
@@ -370,6 +374,7 @@ public:
 		cout<<"Mong cac ban khong bi thong duyt nhu hieu"<<endl<<endl<<endl<<endl<<endl<<endl;
 		Sleep(1000);
 	}
+	
 
     void start() {
     do
@@ -394,6 +399,10 @@ public:
         Khoitaoso_nach();
         vesnake();
         taoqua();
+        
+        int prevX = x;
+        int prevY = y;
+        
         while (!gameover) {
             xoadulieucu();
             if (_kbhit()) {
@@ -411,6 +420,10 @@ public:
                     check = 2;
                 }
             }
+            
+            prevX = x;
+            prevY = y;
+            
             if (check == 0) {
                 y++;
             }
@@ -423,6 +436,12 @@ public:
             else if (check == 3) {
                 x--;
             }
+            
+            if(x<=10 || x>=100 || y<=0 || y>=27 || checkrancan()){
+            	x = prevX;
+            	y = prevY;
+            	gameover = true;
+			}
             
             //nghich day
             /*window.clear();
@@ -475,6 +494,7 @@ public:
 	}while(replay == "1");
 	
 	ketthuc();
+
 	}
         
 };
