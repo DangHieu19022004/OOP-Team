@@ -190,14 +190,12 @@ void Game::xulyran() {
     vesnake();
 }
 void Game::Khoitaoso_nach() {
+	int  x=50, y=13;
     srand(time(NULL));
 
-    int startX = rand() % (80 - 12 + 1) + 12;
-    int startY = rand() % (23 - 3 + 1) + 3;
-
     for (int i = 0; i < sl; i++) {
-        ToaDoX[i] = startX;
-        ToaDoY[i] = startY;
+        ToaDoX[i] = x;
+        ToaDoY[i] = y;
         x--;
     }
 }
@@ -352,9 +350,10 @@ void Game::start() {
         Khoitaoso_nach();
         vesnake();
         taoqua();
-            
-        int prevX = x;
-        int prevY = y;
+        
+        int startX = x;
+        int startY = y;
+        int startSL = sl;
             
         while (!gameover) {
             xoadulieucu();
@@ -374,9 +373,6 @@ void Game::start() {
                 }
             }
                 
-            prevX = x;
-            prevY = y;
-                
             if (check == 0) {
                 y++;
             }
@@ -391,8 +387,6 @@ void Game::start() {
             }
                 
             if(x<=10 || x>=100 || y<=0 || y>=27 || checkrancan()){
-                x = prevX;
-                y = prevY;
                 gameover = true;
             }
                 
@@ -400,6 +394,11 @@ void Game::start() {
             gameover = checkdie();
             Sleep(dokho);
         }
+        
+        x = startX;
+        y = startY;
+        sl = startSL;
+        
         Sleep(3000);
         system("cls");
 
