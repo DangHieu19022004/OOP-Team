@@ -311,7 +311,7 @@ public:
 		//ve chuong ngai vat
 		for(int i=0; i<60; i++){
 			gotoXY(ChuongNgaiX[i], ChuongNgaiY[i]);
-			cout << "o";
+			cout << "+";
 		}
 	}
 	
