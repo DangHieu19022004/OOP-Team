@@ -76,15 +76,15 @@ public:
         cout << "Ban da chon do kho: " << endl;
         if(dokho==100){
         	SetColor(5);
-        	cout << "Trinh choi game chua bang thang code" << endl;
+        	cout << "Cao" << endl;
 		}
 		if(dokho==150){
 			SetColor(3);
-			cout << "Kha hon thang non" << endl;
+			cout << "Trung binh" << endl;
 		}
 		if(dokho==300){
 			SetColor(1);
-			cout << "Choi ngu thi cu noi" << endl;
+			cout << "Thap" << endl;
 		}
         cout << "Tro choi se bat dau sau giay lat" << endl;
         SetColor(9);
@@ -138,11 +138,11 @@ public:
             gotoXY(ToaDoX[i], ToaDoY[i]);
             if (i == 0) {
                 SetColor(4);
-                cout << "S";
+                cout << "O";
                 SetColor(7);
             }
             else {
-                cout << "s";
+                cout << "o";
             }
         }
     }
@@ -350,10 +350,10 @@ public:
 		system("cls");
 		SetColor(11);
 		gotoXY(40,13);
-		cout<<"Cam on ban da choi game va chuc 1 doi an yen <3";
+		cout<<"Cam on ban da choi game <3";
 		Sleep(1000);
 		gotoXY(37,14);
-		cout<<"credit: Nguyen Khac Trung - Tran Dang Hieu aka Hieu nghien";
+		cout<<"Game se tu dong thoat sau 3s !!!";
 		gotoXY(20,16);
 		SetColor(9);
 		cout<<setw(16)<<"3\t";
@@ -371,7 +371,7 @@ public:
 		SetColor(7);
 		system("cls");
 		gotoXY(40,13);
-		cout<<"Mong cac ban khong bi thong duyt nhu hieu"<<endl<<endl<<endl<<endl<<endl<<endl;
+		cout<<"Tam biet !!!"<<endl<<endl<<endl<<endl<<endl<<endl;
 		Sleep(1000);
 	}
 	
@@ -461,7 +461,7 @@ public:
         if(over){
         	SetColor(4);
         	gotoXY(10,1);
-        	cout << "Co choi duoc khong ma heo som the, NON hon ca 1 dua tre 5 tuoi";
+        	cout << "Ban da thua cuoc";
 		}
 		SetColor(11);
         
