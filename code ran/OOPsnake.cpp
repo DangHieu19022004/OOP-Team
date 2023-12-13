@@ -177,6 +177,7 @@ public:
     }
 
     void taoqua() {
+        
         int i = rand() % (15 - 1 + 1) + 1;
         SetColor(i);
         do {
@@ -219,8 +220,8 @@ public:
     }
 
     void Khoitaoso_nach() {
-        int x = 50, y = 13;
-        srand(time(NULL));
+        int x = 50;
+        int y = 13;
 
         for (int i = 0; i < sl; i++) {
             ToaDoX[i] = x;
@@ -371,11 +372,20 @@ public:
 		cout<<"Tam biet !!!"<<endl<<endl<<endl<<endl<<endl<<endl;
 		Sleep(1000);
 	}
+
+void reset() {
+    sl = 3;
+    x = 50;
+    y = 13;
+    check = 2;
+}
+
 	
 
     void start() {
     do
-    {
+    {   
+        reset();
         xoacontro();
         batdau();
         
@@ -389,7 +399,7 @@ public:
             }
           */  
             
-        srand(time(NULL));
+        
         bool gameover = false;
         Khung();
         Chuongngai();
@@ -397,10 +407,10 @@ public:
         vesnake();
         taoqua();
         
-        int startX = x;
-        int startY = y;
-        int startSL = sl;
-        
+//        int startX = x;
+//        int startY = y;
+//        int startSL = sl;
+//        
         while (!gameover) {
             xoadulieucu();
             if (_kbhit()) {
@@ -449,10 +459,10 @@ public:
             Sleep(dokho);
         }
         
-        x = startX;
-        y = startY;
-        sl = startSL;
-        
+//        x = startX;
+//        y = startY;
+//        sl = startSL;
+//        
         Sleep(3000);
         system("cls");
 
