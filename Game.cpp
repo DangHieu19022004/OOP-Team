@@ -6,7 +6,7 @@ Game::Game() : dokho(0), sl(3), x(50), y(13), check(2), xqua(0), yqua(0) {}
 
 void Game::batdau() {
     SetColor(14);
-    cout << setw(200) << "----- GAME RAN SAN MOI -----" << endl << endl << endl << endl;
+    cout << setw(190) << "----- GAME RAN SAN MOI -----" << endl << endl << endl << endl;
     SetColor(11);
     cout << setw(60) << "Huong dan: Di chuyen bang 4 phim w, a, s, d. Ban se thua khi ran" << endl;
     cout << setw(67) << "cham phai chuong ngai vat hoac cham tuong hoac can duoi." << endl;
@@ -190,12 +190,14 @@ void Game::xulyran() {
     vesnake();
 }
 void Game::Khoitaoso_nach() {
-	int  x=50, y=13;
     srand(time(NULL));
 
+    int startX = rand() % (80 - 12 + 1) + 12;
+    int startY = rand() % (23 - 3 + 1) + 3;
+
     for (int i = 0; i < sl; i++) {
-        ToaDoX[i] = x;
-        ToaDoY[i] = y;
+        ToaDoX[i] = startX;
+        ToaDoY[i] = startY;
         x--;
     }
 }
@@ -278,7 +280,7 @@ void Game::Chuongngai() {
     }
     for (int i = 0; i < 60; i++) {
         gotoXY(ChuongNgaiX[i], ChuongNgaiY[i]);
-        cout << "+";
+        cout << "o";
     }
 }
 
@@ -339,8 +341,16 @@ void Game::ketthuc() {
     system("cls");
 }
 
+void Game::reset() {
+    sl = 3;
+    x = 50; //dat lai toa do x,y cua dau ran
+    y = 13;
+    check = 2; //dat lai huong di chuyen ban dau cua ran (2 la qua phai)
+}
+
 void Game::start() {
     do {
+        reset();
         xoacontro();
         batdau();
         srand(time(NULL));
@@ -350,10 +360,9 @@ void Game::start() {
         Khoitaoso_nach();
         vesnake();
         taoqua();
-        
-        int startX = x;
-        int startY = y;
-        int startSL = sl;
+            
+        int prevX = x;
+        int prevY = y;
             
         while (!gameover) {
             xoadulieucu();
@@ -373,6 +382,9 @@ void Game::start() {
                 }
             }
                 
+            prevX = x;
+            prevY = y;
+                
             if (check == 0) {
                 y++;
             }
@@ -387,6 +399,8 @@ void Game::start() {
             }
                 
             if(x<=10 || x>=100 || y<=0 || y>=27 || checkrancan()){
+                x = prevX;
+                y = prevY;
                 gameover = true;
             }
                 
@@ -394,11 +408,6 @@ void Game::start() {
             gameover = checkdie();
             Sleep(dokho);
         }
-        
-        x = startX;
-        y = startY;
-        sl = startSL;
-        
         Sleep(3000);
         system("cls");
 
