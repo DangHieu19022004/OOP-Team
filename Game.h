@@ -84,7 +84,10 @@ public:
     bool checkdie();              
 	       
     //hien thi thong bao ket thuc tro choi
-    void ketthuc();           
+    void ketthuc();  
+
+    //Phuong thuc reset de khoi tao lai trang thai ban dau cua tro choi   
+    void reset();     
 	          
     //phuong thuc chinh de bat dau tro choi
     void start();                       
