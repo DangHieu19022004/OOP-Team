@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <iomanip>
-#include<ctime> 
+#include <ctime> 
 #include <windows.h>
 #define KEY_NONE	-1
 
@@ -177,7 +177,6 @@ public:
     }
 
     void taoqua() {
-        
         int i = rand() % (15 - 1 + 1) + 1;
         SetColor(i);
         do {
@@ -373,12 +372,12 @@ public:
 		Sleep(1000);
 	}
 
-void reset() {
-    sl = 3;
-    x = 50;
-    y = 13;
-    check = 2;
-}
+	void reset() {
+    	sl = 3;
+    	x = 50;
+    	y = 13;
+    	check = 2;
+	}
 
 	
 
